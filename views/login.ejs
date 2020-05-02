@@ -1,0 +1,46 @@
+<%- include ('templates/header'); -%>
+
+    <!-- Nav Temp (Will only be present when use signed in on Profile & Travel) -->
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/"><u>LOGIN</u></a>
+            <a href = "/locations">LOCATIONS</a>
+          
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Login Page</h2>
+            
+            <%if(typeof error != 'undefined' && error){%>
+                <h6 style='color: red;'> Incorrect login credentials! </h6>
+        	<%}%>
+            
+            <form action="/login" method="POST" class="border">
+                <div class="imgcontainer">
+                    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                </div>
+                
+                <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                    <button type="submit" class="btn btn-success">Login</button>
+                    <label>
+                        <!--<input type="checkbox" checked="checked" name="remember"> Remember me-->
+                    </label>
+                </div>
+                
+                <div class="container" style="background-color:#f1f1f1">
+                    <a href="/createaccount" class="">Create Account</a>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

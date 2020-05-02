@@ -1,0 +1,25 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "engines": {
+	"node": "10.18.1"
+  },
+  "description": "As the final project for CST 336, we created a sample website for Spin Scooters where users are able to create an account, login, edit their account, and book a fake trip. Admins are able to edit the database where all the site info is located, to remove accounts, edit locations, and edit trip prices.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Ethan Herndon, Claudio Vertemara, and Mustafa Memon",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jquery": "^3.5.0",
+    "method-override": "^3.0.0",
+    "mysql": "^2.18.1"
+  }
+}

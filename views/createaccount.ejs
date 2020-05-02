@@ -1,0 +1,79 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">LOGIN</a>
+            <a href = "/createaccount"><u>CREATE ACCOUNT</u></a>
+            <a href = "/locations">LOCATIONS</a>
+
+        </center>
+    </nav>
+    <main>
+        <center>
+            <hr>
+            <h2>Create Account</h2>
+            
+            <script>
+                function checkPasswords() {
+                    if ($("#psw").val() == $("#psw2").val()) {
+                        return true;   
+                    } else {
+                        $("#psw2-lab").html("<b style='color: red;'>Passwords are not matching!</b>");
+                        return false;
+                    }
+                    
+                    console.log("test");
+                }
+                
+            </script>
+            
+            <form action="/createaccount" method='POST' onsubmit="return checkPasswords();" class="border">
+                <div class="imgcontainer">
+                    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                </div>
+                
+                <div class="container">
+
+                	<div class="float-child">
+                    <label for="fname"><b>Full Name</b></label>
+                    <input type="text" placeholder="Enter your Full Name" id="fname" name="fname" required>
+                	</div>
+
+                	<div class="float-child">
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    </div>
+
+                    <div class="float-child">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                </div>
+                    
+                    <div class="float-child">
+                    <label for="age"><b>Age</b></label>
+                    <input type="number" min="0" placeholder="Enter Age" name="age" required>
+                </div>
+                    
+                    <div class="float-child">
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+             		</div>
+
+             		<div class="float-child">
+                    <label for="psw2" id="psw2-lab"><b>Re-enter Password</b></label>
+                    <input type="password" placeholder="Re-enter Password" id="psw2" name="psw2" required>
+             		</div>
+                    
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+                
+                <div class="container" style="background-color:#f1f1f1">
+                    <a href="/" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

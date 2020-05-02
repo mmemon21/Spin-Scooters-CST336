@@ -1,0 +1,115 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+          
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Welcome Administrator</h2>
+            <a class='btn btn-danger' href='/logout'>Logout</a><br><br>
+            
+            <div class="border">
+                <form action="/adminusers" method="GET">
+                    <div class="container">
+                        <h3><b>Edit Users:</b></h3>
+                        <input type="text" placeholder="Enter Full Name" name="fname" required>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        
+                        <!-- List of Names & Buttons to Delete those Accounts -->
+                        <ul>
+                            <%if(users != null && users != "noresult"){%>
+                                <%users.forEach(function(user){%>
+                                    <li><%=user.name%> - <a href='/admin/<%=user.id%>/edituser'>Edit</a> | <a href='/admin/<%=user.id%>/deleteuser'>Delete</a></li>
+                                <%});%>
+                            <%} else if (users == "noresult") {%>
+                                No user under that name exists.
+                            <%}%>
+                        </ul>
+                    </div>
+                </form>
+                <hr>
+                
+                <form action='/admin/updatetrip?_method=PUT' method="POST">
+                    <div class="container">
+                        <h3><b>Update Trip Prices:</b></h3>
+                        <label for="startLocation"><b>From:</b></label>
+                        <select id="startLocation" name="startLocation">
+                            <%if(trips){%>
+                                <%trips.forEach(function(trip){%>
+                                    <option value="<%=trip.id%>"><%=trip.name%></option>
+                                <%});%>
+                            <%}%>
+                        </select>
+                        
+                        <label for="endLocation"><b>To:</b></label>
+                        <select id="endLocation" name="endLocation">
+                            <%if(trips){%>
+                                <%trips.forEach(function(trip){%>
+                                    <option value="<%=trip.id%>"><%=trip.name%></option>
+                                <%});%>
+                            <%}%>
+                        </select>
+                        <br><br>
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#startLocation").change(function(){
+                                    $(this).find("option:selected").each(function(){
+                                        var selectedID = $(this).attr("value");
+                                        
+                                        <%if(trips){%>
+                                            <%trips.forEach(function(trip){%>
+                                                if (selectedID == <%=trip.id%>) {
+                                                    var p = <%=trip.price%>;
+                                                    $("#price").val(p.toFixed(2));
+                                                    $("#id").html(selectedID);
+                                                }
+                                            <%});%>
+                                        <%}%>
+                                    });
+                                }).change();
+                            });
+                        </script>
+                        
+                        <label for="price"><b>Price: $</b></label>
+                        <input type="number" step="0.01" min="0.00" placeholder="0.00" id="price" name="price" required>
+                        <button type="submit" class="btn btn-success">Set Price</button>
+                    </div>
+                </form>
+                <hr>
+                
+                <form action="/adminlocations" method="GET">
+                    <div class="container">
+                        <h3><b>Edit Locations:</b></h3>
+                        <input type="text" placeholder="Enter Location Name" name="locationName" required>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        
+                        <!-- List of Locations & Buttons to Edit/Delete -->
+                        <ul>
+                            <%if(locations != null && locations != "noresult"){%>
+                                <%locations.forEach(function(location){%>
+                                    <li><%=location.name%> - <a href='/admin/<%=location.id%>/editlocation'>Edit</a> | <a href='/admin/<%=location.id%>/deletelocation'>Delete</a></li>
+                                <%});%>
+                            <%} else if (locations == "noresult") {%>
+                                No location under that name exists.
+                            <%}%>
+                        </ul>
+                    </div>
+                </form>
+                <form action="/admin/createlocation" method="POST">
+                    <div class="container">
+                        <h3><b>Create New Locations:</b></h3>
+                        <input type="text" placeholder="Enter Location Name" name="locationName2" required>
+                        <input type="number" min="0" placeholder="Enter Number of Scooters" name="scooters" required>
+                        <input type="text" placeholder="Enter Zip Code" name="zip" required>
+                        <button type="submit" class="btn btn-success">Create New Location</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

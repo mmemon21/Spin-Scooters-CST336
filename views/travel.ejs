@@ -1,0 +1,87 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/profile">PROFILE</a>
+            <a href = "/travel"><u>TRAVEL</u></a>
+            <a href = "/locations">LOCATIONS</a>
+          
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Book a Scooter</h2>
+            
+            <form action="/bookconfirm" method="GET" class="border">
+                <div class="container">
+                    <!--Use a for loop in JS to generate dropdown list from database-->
+                    <label for="startLocation"><b>Scooting From:</b></label>
+                    <select id="startLocation" name="startLocation">
+                        <%if(locations){%>
+                            <%locations.forEach(function(location){%>
+                                <option value="<%=location.id%>"><%=location.name%></option>
+                            <%});%>
+                        <%}%>
+                    </select>
+                    
+                    <label for="endLocation"><b>Going To:</b></label>
+                    <select id="endLocation" name="endLocation">
+                        <%if(locations){%>
+                            <%locations.forEach(function(location){%>
+                                <option value="<%=location.name%>"><%=location.name%></option>
+                            <%});%>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    
+                    <!-- Updates Scooters & Price Based on Selected Start Location-->
+                    <script>
+                        $(document).ready(function(){
+                            searchSeasideWeather()//Weather API function called here - EH
+                            $("#startLocation").change(function(){
+                                $(this).find("option:selected").each(function(){
+                                    var selectedID = $(this).attr("value");
+                                    
+                                    /*Loop probably not the best way to do this but couldn't get locations[selectedID] to work*/
+                                    <%locations.forEach(function(location){%>
+                                        if (selectedID == <%=location.id%>) {
+                                            $("#scooters").html("Scooters Available: " + <%=location.numOfDevices%>);
+                                            
+                                            var p = <%=location.price%>;
+                                            $("#price").html("Price: $" + p.toFixed(2));
+                                        }
+                                    <%});%>
+                                });
+                            }).change();
+                        });
+                    </script>
+                    
+                    <!-- Amount of Scooters Available at Starting Location (Will Need to Update based on Selected Start Location)-->
+                    <b id="scooters">Scooters Available: </b>
+                    <br><br>
+                    
+                    <!-- Price for the Trip based on Start & End Locations (Will Need to Update based on Selected Start Location)-->
+                    <b id="price">Price: </b>
+                    <br><br>
+                    
+                    <button type="submit" class="btn btn-success">Book Scooter</button>
+                    <!-- This section is the weather api results -EH -->
+                    <br>
+                    <br>
+                    <center>
+                    <div class="result">  
+                    <div id="result1"></div>
+                    <div id="result2"></div>
+                    <div id="result3"></div>
+                    </div>
+                    </center>
+                     <!-- ----------------------------------------- -->
+                    
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

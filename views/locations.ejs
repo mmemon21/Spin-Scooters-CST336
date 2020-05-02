@@ -1,0 +1,80 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/profile">PROFILE</a>
+            <a href = "/travel">TRAVEL</a>
+            <a href = "/locations"><u>LOCATIONS</u></a>
+           
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Search our Locations</h2>
+            
+            <div class="border">
+                <form action="/locationsbyname" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Location Name</b></h3>
+                        <input type="text" placeholder="Enter Location Name" name="lname" required>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        
+                        <!-- List of Locations & their Info -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsN){%>
+                                    <%locationsN.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Zip Code: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
+                <hr>
+                    
+                <form action="/locationsbynumscooters" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Min Number of Scooters</b></h3>
+                        <input type="number" min="0" placeholder="Enter Number of Scooters" name="numScooters" required>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        
+                        <!-- List of Locations that have at least that amount of scooters -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsNS){%>
+                                    <%locationsNS.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Zip Code: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
+                <hr>
+                
+                <form action="/locationsbyzip" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Zip Code</b></h3>
+                        <input type="text" placeholder="Enter Zip Code" name="zip" required>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        
+                        <!-- List of Locations with those Zip Codes -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsZ){%>
+                                    <%locationsZ.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Zip Code: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
+            </div>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

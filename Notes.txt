@@ -1,0 +1,215 @@
+Installed in this package
+
+```
+foo@bar:~$ npm init    
+foo@bar:~$ touch index.js    
+foo@bar:~$ npm install --save express    
+foo@bar:~$ npm install --save ejs    
+foo@bar:~$ npm install --save body-parser    
+foo@bar:~$ npm install jsdom    
+foo@bar:~$ npm install jquery
+foo@bar:~$ npm install --save mysql    
+foo@bar:~$ npm install --save request       
+foo@bar:~$ mkdir views    
+foo@bar:~$ mkdir views/templates    
+foo@bar:~$ touch views/templates/footer.ejs    
+foo@bar:~$ touch views/templates/header.ejs    
+foo@bar:~$ touch views/home.ejs    
+foo@bar:~$ touch views/error.ejs    
+foo@bar:~$ node index.js   
+
+-----------------------
+
+Notes 4.6.20 - EH
+First Commit
+Setup a mock site w/login screen
+
+-----------------------
+
+Notes 4.18.20 - CV
+
+foo@bar:~$ touch views/admin.ejs    
+foo@bar:~$ touch views/travel.ejs 
+Changed home.ejs -> login.ejs
+Changed app.css -> styles.css
+
+
+-----------------------
+
+Notes 4.18.20 - MM
+
+Updated styles.css
+Made design changes to all webpages
+
+-----------------------
+
+Notes 4.20.20 - EH
+Added database
+	Attributes of the database involve 3 tables
+	1. locations
+		id
+		name
+		number of devices
+		api
+	2. pricing
+		id
+		price
+		tax
+		distance from point A to point B
+	3. users
+		id
+		name
+		username
+		email
+		age
+		password
+	
+-----------------------
+
+Notes 4.20.20 - CV
+Added Locations Page for 1st Feature Requirment
+Setup Database Tables (We just need to fill them with correct info now)
+
+-----------------------
+
+Notes 4.21.20 - CV
+Added Some Info into DB Tables
+Added mysql module to Project
+Added backend for Locations Page (Search by Name, Num Scooters, & Weather Now Works)
+
+-----------------------
+
+Notes 4.21.20 - EH
+Added Weather API integration (Later will tailor to the website)
+Key Issues
+	1. Cannot run locally in Cloud 9
+		Need to install mysql and hook up credentials
+	2. Security Feature break from Github
+		SQL File has a security alert
+
+-----------------------
+
+Notes 4.22.20 - CV
+Fixed SQL Security Issue
+Added button to error page
+Added backend for Profile Page (Reads 1st user info, will need to be changed to logined user later)
+Added backend for travel page (Probably is a better way to update num scooters & price, but it works)
+Added backend for createaccount
+Begun Adding backend for admin page
+
+-----------------------
+
+Notes 4.23.20 - EH
+Modified Weather API to search Marina/Seaside CA weather
+	Later goal: populate the weather conditions when the user purchases its trip to point B.
+
+-----------------------
+
+Notes 4.24.20 - CV
+Added backend to delete user on Profile Page (Checks if password is correct before deleting)
+Cancel button on createaccount page now redirects to login
+Added backend for deleting users from admin page
+Added backed to delete and create new locations from admin page
+	pricing is linked with locations
+		a new price is added when a new locations is added
+		a price is deleted when a location is deleted
+Update prices dropdowns on admin page now are filled with locations 
+	price updates based on selected location
+	Updating the price has NOT been implemented yet
+
+-----------------------
+
+Notes 4.25.20 - CV
+Added backend for updating pricing on admin page
+Added backend for updating user & location info on admin page
+Added editlocation & editaccount pages
+
+-----------------------
+
+Notes 4.26.20 - EH
+Updated Notes.txt and Readme
+
+-----------------------
+
+Notes 4.27.20 - EH
+Removed api.ejs page from navigation
+Integrated api button to travel.ejs
+	Due note, when booking a route it takes user to profile page
+
+-----------------------
+
+Notes 4.27.20 - EH
+Full weather api integration to Travel.ejs
+	Fixed issue on Travel.ejs line 18
+	from
+	<form action="/profile" method="GET" class="border">
+	to
+	<form action="/travel" method="GET" class="border">
+	for now its ok, but will need a new route for confirmation.
+
+-----------------------
+
+Notes 4.27.20 - MM
+Added bookconfirm.ejs
+Made some changes on styles.css.
+Travel.ejs <Added confirmation route> Line 18 changed
+	<form action="/profile" method="GET" class="border"> 
+	to
+	<form action="/bookconfirm" method="GET" class="border">
+	
+-----------------------
+
+Notes 4.27.20 - MM
+Made some designing changes in createaccount.ejs
+	Added float-containers for input fields
+Made some changes to styles.css
+
+-----------------------
+
+Notes 4.29.20 - CV
+Fixed Issue where if you delete something from db and then add to it, it breaks.
+Added login backend.
+Updated database users table with bcrypted passwords
+Added special account 'admin' to users table
+When admin logs in, they are directed to admin page instead of travel page
+Users are redirected to login page if they try to access certain pages if they are not logged in.
+Only admin can access admin page, other users redirected to travel page.
+Passwords now get bcrypted when new account created.
+Updated check password to delete account on profile page to work with new bcrypted passwords.
+Updated Update account info to work with update new passwords.
+Added logout buttons to profile page and admin page.
+Added alert on create account page when two passwords don't match.
+
+Which Pages Users Can Acces based on their state:
+Not Logged in: Login, Create Account, & Locations Page
+Logged In (Normal User): All Pages Except Admin Page
+Logged In (Admin): All Pages
+(We Will need to update nav based on this).
+
+-----------------------
+
+Notes 4.29.20 - EH
+
+Updated the navigation bar
+	Before logging in, the login/create page is no longer seen.
+	After logging in such as users, every page is availabe for them except admin/login/create page.
+	When the Admin logins, he/she is routed to the admin page. All other pages is no longer available.
+	
+Added a title "Spin Scooters at CSU Monterey" so users get an idea of what the website
+is about along with the CSUMB otter logo.
+
+-----------------------
+
+Notes 4.29.20 - CV
+Changed all buttons to use bootstrap.
+Changed search by weather to search by zip code.
+Added options for admin to add & edit zip code when adding/editing locations.
+
+-----------------------
+
+Notes 4.30.20 - MM
+Added Entity Relation Diagram in Documents
+Added Pixabay using ajax in bookconfirm.ejs
+Made some design updates on webpages
+
+-----------------------

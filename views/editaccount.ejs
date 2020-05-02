@@ -1,0 +1,40 @@
+<%- include ('templates/header'); -%>
+
+    <main>
+        <center>
+            <hr>
+            <h2>Edit Account</h2>
+            
+            <form action="/admin/<%=user.id%>/updateaccount?_method=PUT" method='POST' class="border">
+                <div class="imgcontainer">
+                    <img src="/img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                </div>
+                
+                <div class="container">
+                    <label for="fname"><b>Full Name</b></label>
+                    <input type="text" placeholder="Enter your Full Name" id="fname" name="fname" value='<%=user.name%>' required>
+                    
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" value='<%=user.username%>' required>
+                    
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" value='<%=user.email%>' required>
+                    
+                    <label for="age"><b>Age</b></label>
+                    <input type="number" min="0" placeholder="Enter Age" name="age" value='<%=user.age%>' required>
+                    
+                    <label for="psw"><b>Password</b></label>
+                    <input type="text" placeholder="Enter Password" name="psw">
+                    
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </div>
+                
+                <div class="container" style="background-color:#f1f1f1">
+                    <a href="/admin" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

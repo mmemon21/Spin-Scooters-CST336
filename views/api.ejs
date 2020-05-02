@@ -1,0 +1,48 @@
+<%- include ('templates/header'); -%>
+
+<nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">LOGIN</a>
+            <a href = "/profile">PROFILE</a>
+            <a href = "/createaccount">CREATE</a>
+            <a href = "/travel">TRAVEL</a>
+            <a href = "/locations">LOCATIONS</a>
+            <a href = "/admin">ADMIN</a>
+            <a href = "/api"><u>API</u></a>
+        </center>
+    </nav>
+    
+    
+    <header>
+            <center>
+            <div class="jumbotron">   
+            <h1> Check Weather</h1>
+            </center>
+             <center> 
+            <div class="search">
+            Check Seaside Weather:
+            <button onclick="searchSeasideWeather()" id = "sw"> Search </button>
+             Check Marina Weather:
+            <button onclick="searchMarinaWeather()" id = "sw"> Search </button> 
+            </div>
+            </center>
+            <br>
+            <br>
+            <br>
+            <br>
+             <center>
+               
+    <div class="result">  
+    <div id="result1"></div>
+    <div id="result2"></div>
+    <div id="result3"></div>
+    </div>
+            </center>
+            </div>
+            </div>
+           
+            
+     </header>
+
+<%- include ('templates/footer'); -%>
